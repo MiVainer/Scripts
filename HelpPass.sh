@@ -3,11 +3,11 @@
 set -e
 
 
-MONTH=$(date +%m)
+MONTH=$(date +%m) #1
 
-NEW_LINUX_PASSWORD=$(head -n $MONTH password | tail -n 1)
+NEW_LINUX_PASSWORD=$(head -n $MONTH password | tail -n 1) #2
 
-chpasswd <<<"ksdo001:${NEW_LINUX_PASSWORD}"
+chpasswd <<<"ksdo001:${NEW_LINUX_PASSWORD}" #3
 
-echo $NEW_LINUX_PASSWORD
+echo "Новый пароль пользователя ksdo001 - ${NEW_LINUX_PASSWORD}" #4
 

@@ -9,3 +9,16 @@ awk '{sum += $1}END{print sum}' <(seq 1000)
 # В квадратных скобках конструкция, которая проверяет наличие файла /var/run/reboot-required и если он есть, то выполняется перезагрузка.
 #Файл reboot-required создается, если система считает, что после обновления требуется перезагрузка. Если файл существует, возвращается true. А если true, то запускается -r = reboot.
 apt update && apt -fy upgrade && [ -f /var/run/reboot-required ] && shutdown -r now
+
+
+# Удаление дубликатов строк и сохранение в новый файл
+awk '!seen[$0]++' "/home/file.txt" > "output.txt"
+
+# Удаление пустых файлов в директории
+find . -type f -empty -delete
+
+# Поиск и замена теста в нескольких файлах
+find . -type f -name "*.txt" -exec sed -i 's/old_text/new_text/g' {} +
+
+# Отрезать расширение файла
+filename=file.txt; echo ${filename%.*}

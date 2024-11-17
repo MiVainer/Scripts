@@ -22,3 +22,6 @@ find . -type f -name "*.txt" -exec sed -i 's/old_text/new_text/g' {} +
 
 # Отрезать расширение файла
 filename=file.txt; echo ${filename%.*}
+
+# Отправка уведомлений на рабочий стол
+notify-send "Привет Михаил!" "Как дела?"

@@ -1,0 +1,44 @@
+#Вывести только имена файлов. Поиск файлов пойдёт рекурсивно от той директории, где будет запущена команда:
+
+find | awk -F '/' '{print $NF;}'
+#Переместить найденные по маске файлы из одной директории в другую:
+
+find /mnt/backup/*site.ru* -type f -exec mv {} /web/sites/ \;
+#Найти все файлы по маске и сжать:
+
+find /data/1c-bases-backup -type f -name 1Cv8.1CD -exec gzip '{}' \;
+#Переименовать все найденные файлы:
+
+find /backup/sql -type f -name "*.sql.gz" -exec mv {} {}.old \;
+#Подробный список файлов размером больше 100М с помощью ls:
+
+find /data -type f -size +100M -exec ls -lh '{}' \;
+#Поиск файлов по содержимому (header.php):
+
+find /web/site.ru -type f -exec grep -i -H "header.php" {} \;
+#Посчитать количество найденных файлов:
+
+find /home/user -type f | wc -l
+#Найти файлы в определённом временном интервале:
+
+find /mnt/zz_archive -type f -newermt '2022-01-01 00:01' ! -newermt '2022-01-31 23:59'
+#Потом их можно сжать, переместить и т.д, как было показано в предыдущих примерах.
+
+#Искать без учёта регистра:
+
+find /data -type f -iname FILE_NAME
+#Поиск файлов, которые менялись сколько-то дней назад и более:
+
+find /data -type f -mtime +30
+#или в течении последних 5 дней, но не позже:
+
+find /data -type f -mtime -5
+#или в определённом промежутке в минутах (10-20 минут назад):
+
+find /data -type f -mmin -20 -mmin +10
+#Сортировка по дате изменения:
+
+find /data -type f -printf '%TY-%Tm-%Td %TT %p\n' | sort -r
+#и обратная сортировка:
+
+find /data -type f -printf '%TY-%Tm-%Td %TT %p\n' | sort

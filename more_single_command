@@ -25,3 +25,6 @@ filename=file.txt; echo ${filename%.*}
 
 # Отправка уведомлений на рабочий стол
 notify-send "Привет Михаил!" "Как дела?"
+
+#парсиyu логjd Nginx и показ 10 IP-адресов с наибольшим числом запросов
+cut -f 1 -d ' ' /var/log/nginx/access.log | sort | uniq -c | sort -hr | head -n 10
